@@ -4,6 +4,7 @@ import { LogoMark } from "../components/Logo";
 
 const tools = [
   { icon: "▥", title: "Gerador EAN-13", text: "Gere e valide códigos EAN-13 com dígito verificador calculado automaticamente.", href: "/ferramentas/ean-13" },
+  { icon: "◇", title: "PNG → SVG", text: "Transforme imagens PNG em vetores SVG para usar em etiquetas, cortes e projetos no Bambu Studio.", href: "/ferramentas/png-para-svg" },
   { icon: "₱", title: "Calculadora de custos", text: "Calcule o custo real de uma impressão 3D considerando filamento, tempo e energia.", coming: true },
   { icon: "R$", title: "Calculadora de preço", text: "Descubra quanto cobrar pela sua peça considerando custos, taxas e margem.", coming: true },
   { icon: "%", title: "Taxas de marketplace", text: "Simule o impacto das taxas sobre suas vendas e veja quanto sobra de cada pedido.", coming: true },
