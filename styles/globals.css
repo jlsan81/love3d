@@ -236,8 +236,9 @@ button, input, select {
 .site-footer {
   margin-top: 40px;
   padding: 36px 0;
-  background: var(--love-dark);
-  color: #dce4e7;
+  background: #fff;
+  color: var(--love-dark);
+  border-top: 1px solid var(--love-border);
 }
 
 .footer-inner {
@@ -247,7 +248,7 @@ button, input, select {
   align-items: center;
 }
 
-.footer-text { color: #aebcc1; font-size: 13px; line-height: 1.5; }
+.footer-text { color: var(--love-muted); font-size: 13px; line-height: 1.5; }
 
 .tool-page {
   padding: 54px 0 80px;
