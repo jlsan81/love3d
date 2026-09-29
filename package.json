@@ -1,7 +1,7 @@
 {
-  "name": "clone-tabnews",
+  "name": "love3d",
   "version": "1.0.0",
-  "description": "implementação do tabnwes.com.br para o curso.dev",
+  "description": "Portal Love3D — ferramentas gratuitas para impressão 3D e vendas.",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
