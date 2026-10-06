@@ -10,9 +10,10 @@ export default function Layout({ children }) {
             <LogoHorizontal />
           </Link>
           <nav className="nav">
+            <Link href="/ferramentas/ean-13">EAN-13</Link>
+            <Link href="/ferramentas/qrcode">QR Code</Link>
             <Link href="/#ferramentas">Ferramentas</Link>
             <Link href="/#recursos">Recursos</Link>
-            <Link href="/ferramentas/ean-13" className="nav-cta">Gerar EAN-13</Link>
           </nav>
         </div>
       </header>
