@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 
@@ -12,8 +12,26 @@ function Field({label,value,onChange,suffix,help}) {
 
 export default function CustoImpressaoPage() {
   const [data,setData] = useState(initial);
+  const loaded = useRef(false);
   const update = (key,value) => setData(d=>({...d,[key]:value}));
   const reset = () => setData({...initial});
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem("love3d-custo-impressao");
+      if (saved) setData({ ...initial, ...JSON.parse(saved) });
+    } catch {}
+    loaded.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (!loaded.current) return;
+    try {
+      window.localStorage.setItem("love3d-custo-impressao", JSON.stringify(data));
+    } catch {}
+  }, [data]);
+
+
   const result = useMemo(() => {
     const filamentPrice=number(data.filamentPrice), weight=number(data.weight), waste=number(data.waste);
     const printTime=number(data.printHours)+number(data.printMinutes)/60, power=number(data.power), energyPrice=number(data.energyPrice);
@@ -53,6 +71,7 @@ export default function CustoImpressaoPage() {
           <Field label="Outros custos" value={data.other} onChange={v=>update("other",v)} suffix="R$" help="Cola, lixa, pintura, ímã ou outro gasto da peça."/>
         </div></div>
         <div className="button-row"><button className="btn btn-secondary" type="button" onClick={reset}>Restaurar valores</button></div>
+        <p className="field-help">Os valores desta calculadora são salvos neste navegador para facilitar o uso recorrente.</p>
         <div className="notice"><strong>Importante:</strong> esta ferramenta calcula o custo de produção. Margem, impostos e taxas de marketplace ficarão para a calculadora de preço.</div>
       </section>
       <section className="panel">
