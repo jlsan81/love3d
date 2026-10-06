@@ -19,6 +19,7 @@ export default function Layout({ children }) {
             <Link href="/ferramentas/preco-venda">Preços</Link>
             <Link href="/#ferramentas">Ferramentas</Link>
             <Link href="/#recursos">Recursos</Link>
+            <Link href="/impressao">Perfis</Link>
             <button type="button" className="favorite-button" onClick={() => setShowFavorite(true)}>
               ★ Favoritar Love3D
             </button>
