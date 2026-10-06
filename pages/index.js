@@ -4,12 +4,11 @@ import { LogoMark } from "../components/Logo";
 
 const tools = [
   { icon: "▥", title: "Gerador EAN-13", text: "Gere e valide códigos EAN-13 com dígito verificador calculado automaticamente.", href: "/ferramentas/ean-13" },
-  { icon: "◇", title: "PNG → SVG", text: "Transforme imagens PNG em vetores SVG para usar em etiquetas, cortes e projetos no Bambu Studio.", href: "/ferramentas/png-para-svg" },
   { icon: "₱", title: "Calculadora de custos", text: "Calcule o custo real de uma impressão 3D considerando filamento, tempo e energia.", coming: true },
   { icon: "R$", title: "Calculadora de preço", text: "Descubra quanto cobrar pela sua peça considerando custos, taxas e margem.", coming: true },
   { icon: "%", title: "Taxas de marketplace", text: "Simule o impacto das taxas sobre suas vendas e veja quanto sobra de cada pedido.", coming: true },
   { icon: "⌁", title: "Filamento", text: "Converta peso, comprimento e custo do filamento para facilitar sua produção.", coming: true },
-  { icon: "⌁", title: "Gerador de QR Code", text: "Crie QR Codes para produtos, redes sociais, WhatsApp e etiquetas.", coming: true },
+  { icon: "▦", title: "Gerador de QR Code", text: "Crie QR Codes em SVG para Wi-Fi, Pix, WhatsApp, links, textos e etiquetas de impressão 3D.", href: "/ferramentas/qrcode" },
 ];
 
 export default function Home() {
