@@ -121,27 +121,8 @@ function makeCutoutSvg(value, sizeMm, level) {
 </svg>`;
 }
 
-function makeSolidSvg(value, sizeMm, level) {
-  const qr = QRCode.create(value, { errorCorrectionLevel: level });
-  const { size, data } = qr.modules;
-  const moduleMm = sizeMm / (size + 8);
-  const quiet = moduleMm * 4;
-  const total = sizeMm;
-  let rects = `<rect width="${total}" height="${total}" fill="#fff"/>`;
-  for (let row = 0; row < size; row++) {
-    for (let col = 0; col < size; col++) {
-      if (!data[row * size + col]) continue;
-      const x = quiet + col * moduleMm;
-      const y = quiet + row * moduleMm;
-      rects += `<rect x="${x}" y="${y}" width="${moduleMm}" height="${moduleMm}" fill="#000"/>`;
-    }
-  }
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${sizeMm}mm" height="${sizeMm}mm" viewBox="0 0 ${total} ${total}">${rects}</svg>`;
-}
-
-function PreviewSvg({ value, sizeMm, level, mode }) {
-  const source = mode === "cutout" ? makeCutoutSvg(value, sizeMm, level) : makeSolidSvg(value, sizeMm, level);
+function PreviewSvg({ value, sizeMm, level }) {
+  const source = makeCutoutSvg(value, sizeMm, level);
   return <div dangerouslySetInnerHTML={{ __html: source.replace(/<\?xml[^>]*>\s*/, "") }} />;
 }
 
@@ -150,7 +131,6 @@ export default function QRCodePage() {
   const [data, setData] = useState(initial);
   const [sizeMm, setSizeMm] = useState(40);
   const [level, setLevel] = useState("H");
-  const [mode, setMode] = useState("cutout");
   const value = useMemo(() => build(type, data), [type, data]);
 
   const update = (key, value) => setData((d) => ({ ...d, [key]: value }));
@@ -158,14 +138,12 @@ export default function QRCodePage() {
 
   function downloadSVG() {
     if (!value) return;
-    const source = mode === "cutout"
-      ? makeCutoutSvg(value, sizeMm, level)
-      : makeSolidSvg(value, sizeMm, level);
+    const source = makeCutoutSvg(value, sizeMm, level);
     const blob = new Blob([source], { type: "image/svg+xml;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "love3d-qrcode-" + mode + "-" + type + "-" + sizeMm + "mm.svg";
+    a.download = "love3d-qrcode-vazado-" + type + "-" + sizeMm + "mm.svg";
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -224,25 +202,18 @@ export default function QRCodePage() {
               </select></Field>
             </div>
 
-            <Field label="Tipo de saída">
-              <select className="input" value={mode} onChange={e => setMode(e.target.value)}>
-                <option value="cutout">Vazado — QR vira furos na peça</option>
-                <option value="solid">Normal — módulos sólidos</option>
-              </select>
-            </Field>
-
             <div className="button-row"><button className="btn btn-primary" onClick={downloadSVG} disabled={!value}>Baixar SVG</button><button className="btn btn-secondary" onClick={reset}>Limpar</button></div>
-            {mode === "cutout" && <div className="notice"><strong>Modo vazado:</strong> o fundo é uma peça sólida e os quadrados do QR são recortes. Isso é diferente de simplesmente deixar o fundo transparente.</div>}
+            <div className="notice"><strong>Pronto para impressão 3D:</strong> o SVG é sempre gerado no formato vazado, com os módulos do QR como recortes na peça.</div>
             {type === "pix" && <div className="notice"><strong>Pix:</strong> QR estático. Confira recebedor e valor no aplicativo do banco antes de usar.</div>}
           </section>
 
           <section className="panel">
             <h2>Pré-visualização</h2>
-            <div className={"qr-preview " + (mode === "cutout" ? "qr-cutout-preview" : "")}>
-              {value ? <PreviewSvg value={value} sizeMm={sizeMm} level={level} mode={mode} />
+            <div className="qr-preview qr-cutout-preview">
+              {value ? <PreviewSvg value={value} sizeMm={sizeMm} level={level} />
                 : <div className="empty-preview"><span>▦</span><p>Preencha os dados para gerar o QR Code.</p></div>}
             </div>
-            <div className="qr-meta"><strong>{sizeMm} × {sizeMm} mm</strong><span>{mode === "cutout" ? "vazado" : "módulos sólidos"} • margem de 4 módulos • correção {level}</span></div>
+            <div className="qr-meta"><strong>{sizeMm} × {sizeMm} mm</strong><span>vazado • margem de 4 módulos • correção {level}</span></div>
             <Field label="Conteúdo codificado"><textarea className="input textarea qr-data-text" value={value} readOnly placeholder="O conteúdo aparecerá aqui." /></Field>
             <p className="tool-note">Para impressão 3D, o modo vazado é ideal para placas, etiquetas e gabaritos. Evite QR muito pequeno: 30–40 mm costuma ser uma faixa confortável para impressão e leitura.</p>
           </section>
