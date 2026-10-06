@@ -85,10 +85,8 @@ button, input, select {
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  align-items: center;
-  gap: 60px;
+  display: block;
+  max-width: 900px;
 }
 
 .eyebrow {
@@ -154,24 +152,6 @@ button, input, select {
   color: var(--love-dark);
   border: 1px solid var(--love-border);
 }
-
-.hero-mark {
-  display: flex;
-  justify-content: center;
-}
-
-.mark-card {
-  width: min(340px, 100%);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  border-radius: 34px;
-  background: white;
-  border: 1px solid var(--love-border);
-  box-shadow: 0 24px 70px rgba(28,45,52,.12);
-}
-
-.logo-mark { width: 88%; height: auto; }
 
 .section { padding: 68px 0; }
 
@@ -472,7 +452,6 @@ button, input, select {
   .nav a:not(.nav-cta) { display: none; }
   .hero-grid, .tool-layout { grid-template-columns: 1fr; }
   .hero { padding-top: 54px; }
-  .hero-mark { order: -1; }
   .tool-grid { grid-template-columns: 1fr 1fr; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
