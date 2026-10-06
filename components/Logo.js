@@ -3,5 +3,5 @@ export function LogoHorizontal({ className = "" }) {
 }
 
 export function LogoMark({ className = "" }) {
-  return <img className={className || "logo-mark"} src="/logo-love3d.png" alt="Love3D" />;
+  return <img className={className || "logo-mark"} src="/logo-love3d-mark.svg" alt="Love3D" />;
 }
