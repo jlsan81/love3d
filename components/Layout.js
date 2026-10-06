@@ -16,6 +16,7 @@ export default function Layout({ children }) {
             <Link href="/ferramentas/ean-13">EAN-13</Link>
             <Link href="/ferramentas/qrcode">QR Code</Link>
             <Link href="/ferramentas/custo-impressao">Custos</Link>
+            <Link href="/ferramentas/preco-venda">Preços</Link>
             <Link href="/#ferramentas">Ferramentas</Link>
             <Link href="/#recursos">Recursos</Link>
             <button type="button" className="favorite-button" onClick={() => setShowFavorite(true)}>
