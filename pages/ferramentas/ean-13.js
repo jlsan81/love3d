@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 
@@ -77,7 +77,11 @@ function Barcode({ code }) {
 
 export default function EAN13Page() {
   const [value, setValue] = useState("");
-  const [generated, setGenerated] = useState(randomBrazilianEAN());
+  const [generated, setGenerated] = useState("");
+
+  useEffect(() => {
+    setGenerated(randomBrazilianEAN());
+  }, []);
 
   const status = useMemo(() => {
     if (!value) return null;
