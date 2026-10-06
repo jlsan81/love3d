@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 
@@ -40,7 +41,15 @@ function Field({ label, value, onChange, suffix, help }) {
 }
 
 export default function PrecoVendaPage() {
+  const router = useRouter();
   const [data, setData] = useState(initial);
+
+  useEffect(() => {
+    const custo = router.query.custo;
+    if (custo !== undefined && custo !== "" && Number.isFinite(Number(custo))) {
+      setData((current) => ({ ...current, cost: String(custo).replace(".", ",") }));
+    }
+  }, [router.query.custo]);
   const update = (key, value) => setData((d) => ({ ...d, [key]: value }));
   const reset = () => setData({ ...initial });
 
@@ -97,7 +106,7 @@ export default function PrecoVendaPage() {
                   value={data.cost}
                   onChange={(v) => update("cost", v)}
                   suffix="R$"
-                  help="Use o resultado da Calculadora de custo de impressão 3D."
+                  help="Você pode preencher manualmente ou vir diretamente da Calculadora de custo de impressão 3D."
                 />
                 <Field
                   label="Custos extras por unidade"
@@ -184,9 +193,8 @@ export default function PrecoVendaPage() {
               )}
 
               <div className="notice">
-                <strong>Importante:</strong> as taxas de marketplace variam conforme
-                plataforma, categoria, anúncio e condições da venda. Informe as taxas
-                que realmente se aplicam ao seu caso.
+                <strong>Importante:</strong> informe apenas as taxas que realmente incidem sobre a sua venda.
+                Se vender diretamente ao cliente, deixe as taxas de marketplace em zero.
               </div>
 
               <p className="tool-note">
