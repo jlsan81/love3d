@@ -12,6 +12,7 @@ export default function Layout({ children }) {
           <nav className="nav">
             <Link href="/ferramentas/ean-13">EAN-13</Link>
             <Link href="/ferramentas/qrcode">QR Code</Link>
+            <Link href="/ferramentas/custo-impressao">Custos</Link>
             <Link href="/#ferramentas">Ferramentas</Link>
             <Link href="/#recursos">Recursos</Link>
           </nav>
