@@ -67,7 +67,13 @@ export default function CustoImpressaoPage() {
           <div><span>Custo por hora</span><strong>{money(result.printTime>0 ? result.total/result.printTime : 0)}</strong></div>
         </div>
         <div className="notice"><strong>Como calculamos:</strong> filamento = peso + desperdício; energia = potência média × tempo × tarifa; depreciação = valor da impressora ÷ vida útil em horas × tempo da impressão.</div>
-        <p className="tool-note">Este resultado é o <strong>custo de produção</strong>. Não inclui margem de lucro, impostos ou taxas de marketplace.</p>
+        <p className="tool-note">Este resultado é o <strong>custo de produção</strong>. Agora você pode levar esse valor diretamente para a calculadora de preço.</p>
+        <Link
+          className="btn btn-primary"
+          href={{ pathname: "/ferramentas/preco-venda", query: { custo: result.total.toFixed(2) } }}
+        >
+          Calcular preço de venda com este custo →
+        </Link>
       </section>
     </div>
   </div></section></Layout>;
