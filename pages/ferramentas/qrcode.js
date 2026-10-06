@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import QRCode from "qrcode";
 import Layout from "../../components/Layout";
@@ -130,6 +130,10 @@ export default function QRCodePage() {
   const [type, setType] = useState("url");
   const [data, setData] = useState(initial);
   const sizeMm = 100;
+  useEffect(() => {
+    setData({ ...initial });
+    setType("url");
+  }, []);
   const level = "H";
   const value = useMemo(() => build(type, data), [type, data]);
 
