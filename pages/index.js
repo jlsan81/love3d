@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
-import { LogoMark } from "../components/Logo";
 
 const tools = [
   { icon: "▥", title: "Gerador EAN-13", text: "Gere e valide códigos EAN-13 com dígito verificador calculado automaticamente.", href: "/ferramentas/ean-13" },
@@ -23,13 +22,6 @@ export default function Home() {
               O Love3D está sendo construído para reunir ferramentas gratuitas que ajudam
               quem trabalha com impressão 3D a produzir, precificar e vender melhor.
             </p>
-            <div className="hero-actions">
-              <Link href="/ferramentas/ean-13" className="btn btn-primary">Gerar EAN-13</Link>
-              <a href="#ferramentas" className="btn btn-secondary">Ver ferramentas</a>
-            </div>
-          </div>
-          <div className="hero-mark">
-            <div className="mark-card"><LogoMark /></div>
           </div>
         </div>
       </section>
