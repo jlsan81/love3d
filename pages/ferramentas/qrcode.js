@@ -129,8 +129,8 @@ function PreviewSvg({ value, sizeMm, level }) {
 export default function QRCodePage() {
   const [type, setType] = useState("url");
   const [data, setData] = useState(initial);
-  const [sizeMm, setSizeMm] = useState(40);
-  const [level, setLevel] = useState("H");
+  const sizeMm = 100;
+  const level = "H";
   const value = useMemo(() => build(type, data), [type, data]);
 
   const update = (key, value) => setData((d) => ({ ...d, [key]: value }));
@@ -192,14 +192,9 @@ export default function QRCodePage() {
             {type === "phone" && <Field label="Telefone"><input className="input" inputMode="tel" value={data.phone} onChange={e => update("phone", e.target.value)} placeholder="+55 11 99999-9999" /></Field>}
             {type === "text" && <Field label="Texto"><textarea className="input textarea" value={data.text} onChange={e => update("text", e.target.value)} placeholder="Digite o texto que o leitor do QR Code deverá receber." /></Field>}
 
-            <div className="qr-options">
-              <Field label={"Tamanho físico: " + sizeMm + " mm"}>
-                <input type="range" min="20" max="100" value={sizeMm} onChange={e => setSizeMm(Number(e.target.value))} />
-                <div className="range-labels"><span>20 mm</span><span>100 mm</span></div>
-              </Field>
-              <Field label="Correção de erro"><select className="input" value={level} onChange={e => setLevel(e.target.value)}>
-                <option value="M">M — uso geral</option><option value="Q">Q — mais robusto</option><option value="H">H — impressão 3D</option>
-              </select></Field>
+            <div className="qr-fixed-options">
+              <span><strong>Tamanho:</strong> 100 × 100 mm</span>
+              <span><strong>Correção:</strong> H — impressão 3D</span>
             </div>
 
             <div className="button-row"><button className="btn btn-primary" onClick={downloadSVG} disabled={!value}>Baixar SVG</button><button className="btn btn-secondary" onClick={reset}>Limpar</button></div>
