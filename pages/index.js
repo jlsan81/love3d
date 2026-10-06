@@ -4,7 +4,7 @@ import { LogoMark } from "../components/Logo";
 
 const tools = [
   { icon: "▥", title: "Gerador EAN-13", text: "Gere e valide códigos EAN-13 com dígito verificador calculado automaticamente.", href: "/ferramentas/ean-13" },
-  { icon: "₱", title: "Calculadora de custos", text: "Calcule o custo real de uma impressão 3D considerando filamento, tempo e energia.", coming: true },
+  { icon: "₱", title: "Calculadora de custos", text: "Calcule o custo real de uma impressão 3D considerando filamento, tempo, energia e desgaste da impressora.", href: "/ferramentas/custo-impressao" },
   { icon: "R$", title: "Calculadora de preço", text: "Descubra quanto cobrar pela sua peça considerando custos, taxas e margem.", coming: true },
   { icon: "%", title: "Taxas de marketplace", text: "Simule o impacto das taxas sobre suas vendas e veja quanto sobra de cada pedido.", coming: true },
   { icon: "⌁", title: "Filamento", text: "Converta peso, comprimento e custo do filamento para facilitar sua produção.", coming: true },
