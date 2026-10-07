@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { LogoHorizontal } from "./Logo";
+import AffiliateSlot from "./AffiliateSlot";
 
 const SITE_URL = "https://love3d.com.br";
 
@@ -213,6 +214,7 @@ export default function Layout({ children }) {
       )}
 
       <main>{children}</main>
+      {!pathname.startsWith("/admin") && <AffiliateSlot placement={pathname === "/" ? "home" : pathname.replace(/^\//, "").replaceAll("/", "-")} />}
       <footer className="site-footer">
         <div className="container footer-inner">
           <div><LogoHorizontal /></div>
