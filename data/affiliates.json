@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "nome": "Exemplo",
+    "rede": "Exemplo",
+    "url": "https://example.com",
+    "titulo": "Exemplo de recomendação",
+    "local": "geral",
+    "ativo": false,
+    "prioridade": 0
+  }
+]
