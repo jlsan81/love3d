@@ -8,5 +8,15 @@
     "local": "geral",
     "ativo": false,
     "prioridade": 0
+  },
+  {
+    "id": 2,
+    "nome": "Amazon",
+    "rede": "Shopee",
+    "url": "https://s.shopee.com.br/3g4GyAEmTO",
+    "titulo": "PETG branco",
+    "local": "impressao",
+    "ativo": true,
+    "prioridade": 10
   }
 ]
