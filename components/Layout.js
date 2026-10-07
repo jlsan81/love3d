@@ -154,7 +154,7 @@ export default function Layout({ children }) {
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
         <meta name="keywords" content={seo.keywords} />
-        <meta name="robots" content="index,follow,max-image-preview:large" />
+        <meta name="robots" content={pathname.startsWith("/admin") ? "noindex,nofollow,noarchive" : "index,follow,max-image-preview:large"} />
         <link rel="canonical" href={canonical} />
 
         <meta property="og:type" content="website" />
