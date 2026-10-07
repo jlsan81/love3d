@@ -16,7 +16,7 @@
     "url": "https://s.shopee.com.br/3g4GyAEmTO",
     "titulo": "PETG branco",
     "local": "impressao",
-    "ativo": true,
+    "ativo": false,
     "prioridade": 10
   },
   {
@@ -26,7 +26,17 @@
     "url": "https://s.shopee.com.br/3g4GyAEmTO",
     "titulo": "PETG preto",
     "local": "impressao",
-    "ativo": true,
+    "ativo": false,
     "prioridade": 10
+  },
+  {
+    "id": 4,
+    "nome": "Shopee",
+    "rede": "Shopee",
+    "url": "https://s.shopee.com.br/3g4GyAEmTO",
+    "titulo": "Filamento PETG Barato",
+    "local": "impressao",
+    "ativo": true,
+    "prioridade": 100
   }
 ]
