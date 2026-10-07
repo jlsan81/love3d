@@ -1,36 +1,29 @@
-import { useEffect, useState } from "react";
+import affiliates from "../data/affiliates.json";
 
 export default function AffiliateSlot({ placement = "geral" }) {
-  const [affiliate, setAffiliate] = useState(null);
+  const items = affiliates.filter(
+    (item) => item.ativo && (item.local === placement || item.local === "geral")
+  );
 
-  useEffect(() => {
-    let active = true;
-    fetch(`/api/afiliados?placement=${encodeURIComponent(placement)}`)
-      .then((r) => r.ok ? r.json() : null)
-      .then((data) => {
-        if (active && data?.affiliates?.length) setAffiliate(data.affiliates[0]);
-      })
-      .catch(() => {});
-    return () => { active = false; };
-  }, [placement]);
+  if (!items.length) return null;
 
-  if (!affiliate) return null;
-
-  async function handleClick() {
-    fetch(`/api/afiliados?placement=${encodeURIComponent(placement)}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: affiliate.id }),
-      keepalive: true,
-    }).catch(() => {});
-  }
+  const item = [...items].sort(
+    (a, b) => (b.prioridade || 0) - (a.prioridade || 0)
+  )[0];
 
   return (
     <aside className="affiliate-card" aria-label="Recomendação">
       <span className="affiliate-label">Recomendação Love3D</span>
-      <a href={affiliate.url} target="_blank" rel="sponsored nofollow noopener" onClick={handleClick}>
-        <strong>{affiliate.titulo}</strong>
-        <small>{affiliate.nome}{affiliate.rede ? ` · ${affiliate.rede}` : ""}</small>
+      <a
+        href={item.url}
+        target="_blank"
+        rel="sponsored nofollow noopener"
+      >
+        <strong>{item.titulo}</strong>
+        <small>
+          {item.nome}
+          {item.rede ? ` · ${item.rede}` : ""}
+        </small>
       </a>
     </aside>
   );
