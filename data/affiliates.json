@@ -18,5 +18,15 @@
     "local": "impressao",
     "ativo": true,
     "prioridade": 10
+  },
+  {
+    "id": 3,
+    "nome": "Amazon",
+    "rede": "Shopee",
+    "url": "https://s.shopee.com.br/3g4GyAEmTO",
+    "titulo": "PETG preto",
+    "local": "impressao",
+    "ativo": true,
+    "prioridade": 10
   }
 ]
